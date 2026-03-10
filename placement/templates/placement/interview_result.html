@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Interview Result</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f6f9;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        .summary {
+            background: #ffffff;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 6px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+        .pass {
+            color: green;
+            font-weight: bold;
+        }
+        .fail {
+            color: red;
+            font-weight: bold;
+        }
+        .question-box {
+            background: #ffffff;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            box-shadow: 0 0 4px rgba(0,0,0,0.1);
+        }
+        .correct {
+            color: green;
+            font-weight: bold;
+        }
+        .wrong {
+            color: red;
+            font-weight: bold;
+        }
+        hr {
+            margin: 20px 0;
+        }
+        .center {
+            text-align: center;
+        }
+        button {
+            padding: 10px 25px;
+            font-size: 15px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Interview Result</h1>
+
+<!-- SUMMARY -->
+<div class="summary">
+    <p><b>Student Name:</b> {{ student.name }}</p>
+    <p><b>Department:</b> {{ department }}</p>
+    <p><b>Score:</b> {{ score }} / {{ total_questions }}</p>
+
+    {% if passed %}
+        <p class="pass">✅ RESULT: PASSED</p>
+    {% else %}
+        <p class="fail">❌ RESULT: FAILED</p>
+    {% endif %}
+</div>
+
+<hr>
+
+<h2>Answer Review</h2>
+
+<!-- QUESTIONS REVIEW -->
+{% for item in review %}
+    <div class="question-box">
+        <p><b>{{ forloop.counter }}. {{ item.question }}</b></p>
+
+        <p>
+            <b>Your Answer:</b>
+            {% if item.is_correct %}
+                <span class="correct">{{ item.selected_text }}</span>
+            {% else %}
+                <span class="wrong">{{ item.selected_text|default:"Not Answered" }}</span>
+            {% endif %}
+        </p>
+
+        {% if not item.is_correct %}
+            <p>
+                <b>Correct Answer:</b>
+                <span class="correct">{{ item.correct_text }}</span>
+            </p>
+        {% endif %}
+    </div>
+{% endfor %}
+
+<div class="center">
+    <a href="{% url 'interview_home' %}">
+        <button>Back to Interview Home</button>
+    </a>
+</div>
+
+</body>
+</html>

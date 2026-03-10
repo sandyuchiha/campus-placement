@@ -1,0 +1,11 @@
+<h2>Interview - {{ dept }}</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {% for q in questions %}
+        <p><b>{{ forloop.counter }}. {{ q.question }}</b></p>
+        <input type="text" name="{{ q.id }}" required>
+        <hr>
+    {% endfor %}
+    <button type="submit">Submit Interview</button>
+</form>

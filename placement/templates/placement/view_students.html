@@ -1,0 +1,90 @@
+{% extends 'placement/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-3">Students List</h2>
+
+    {% if students %}
+    <table class="table table-bordered table-striped align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>Photo</th>
+                <th>Name</th>
+                <th>Register No</th>
+                <th>Department</th>
+                <th>CGPA</th>
+                <th>Status</th>
+                <th style="width: 360px;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr>
+
+                <!-- PHOTO -->
+                <td>
+                    {% if student.photo %}
+                        <img src="{{ student.photo.url }}"
+                             width="60" height="60"
+                             style="object-fit: cover; border-radius: 50%;">
+                    {% else %}
+                        <span class="text-muted">No Photo</span>
+                    {% endif %}
+                </td>
+
+                <!-- DETAILS -->
+                <td>{{ student.name }}</td>
+                <td>{{ student.register_no }}</td>
+                <td>{{ student.get_department_display }}</td>
+                <td>{{ student.cgpa }}</td>
+
+                <!-- INTERVIEW STATUS -->
+                <td>
+                    {% if student.is_interview_passed %}
+                        <span class="badge bg-success">Passed</span>
+                    {% elif student.interview_results.exists %}
+                        <span class="badge bg-danger">Failed</span>
+                    {% else %}
+                        <span class="badge bg-secondary">Not Attempted</span>
+                    {% endif %}
+                </td>
+
+                <!-- ACTIONS -->
+                <td>
+                    <!-- Eligible Companies -->
+                    <a href="{% url 'eligible_companies' student.id %}"
+                       class="btn btn-sm btn-success mb-1">
+                        Eligible Companies
+                    </a>
+
+                    <!-- Start Interview -->
+                    {% if not student.interview_results.exists %}
+                        <a href="{% url 'start_interview' student.id %}"
+                           class="btn btn-sm btn-primary mb-1">
+                            Start Interview
+                        </a>
+                    {% else %}
+                        <button class="btn btn-sm btn-secondary mb-1" disabled>
+                            Interview Completed
+                        </button>
+                    {% endif %}
+
+                    <!-- Delete Student -->
+                    <a href="{% url 'delete_student' student.id %}"
+                       class="btn btn-sm btn-danger mb-1"
+                       onclick="return confirm('Are you sure you want to delete this student?');">
+                        Delete
+                    </a>
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <div class="alert alert-warning">
+            No students found.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

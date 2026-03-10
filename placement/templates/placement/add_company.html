@@ -1,0 +1,65 @@
+{% extends 'placement/base.html' %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+        <div class="card shadow p-4">
+
+            <h3 class="text-center text-primary mb-4">
+                Add Company
+            </h3>
+
+            {% if error %}
+                <div class="alert alert-danger">
+                    {{ error }}
+                </div>
+            {% endif %}
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <!-- Company Name -->
+                <div class="mb-3">
+                    <label class="form-label">Company Name</label>
+                    {{ form.name }}
+                </div>
+
+                <!-- Location -->
+                <div class="mb-3">
+                    <label class="form-label">Location</label>
+                    {{ form.location }}
+                </div>
+
+                <!-- Job Role -->
+                <div class="mb-3">
+                    <label class="form-label">Job Role</label>
+                    {{ form.job_role }}
+                </div>
+
+                <!-- Department (ONLY BSC) -->
+                <div class="mb-3">
+                    <label class="form-label">Department</label>
+                    {{ form.department }}
+                </div>
+
+                <!-- Package -->
+                <div class="mb-3">
+                    <label class="form-label">Package (LPA)</label>
+                    {{ form.package }}
+                </div>
+
+                <!-- Minimum CGPA -->
+                <div class="mb-3">
+                    <label class="form-label">Minimum CGPA</label>
+                    {{ form.min_cgpa }}
+                </div>
+
+                <button type="submit" class="btn btn-success w-100">
+                    Add Company
+                </button>
+            </form>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

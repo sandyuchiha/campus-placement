@@ -1,0 +1,51 @@
+{% extends 'placement/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-3">Register Student</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {% if form.errors %}
+            <div class="alert alert-danger">
+                {{ form.errors }}
+            </div>
+        {% endif %}
+
+        <div class="mb-3">
+            {{ form.name.label_tag }}
+            {{ form.name }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.register_no.label_tag }}
+            {{ form.register_no }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.department.label_tag }}
+            {{ form.department }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.cgpa.label_tag }}
+            {{ form.cgpa }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.photo.label_tag }}
+            {{ form.photo }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.resume.label_tag }}
+            {{ form.resume }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Register Student
+        </button>
+    </form>
+</div>
+{% endblock %}

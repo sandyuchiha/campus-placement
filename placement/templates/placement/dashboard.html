@@ -1,0 +1,49 @@
+{% extends 'placement/base.html' %}
+
+{% block content %}
+<div class="row text-center">
+
+    <!-- Students Card -->
+    <div class="col-md-6 mb-4">
+        <div class="card p-4 border-0">
+            <div class="card-body">
+                <h5 class="card-title text-primary">Total Students</h5>
+                <h1 class="display-4 fw-bold text-success">
+                    {{ students_count }}
+                </h1>
+                <p class="text-muted">Registered students</p>
+                <a href="/students/" class="btn btn-outline-primary">
+                    View Students
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Companies Card -->
+    <div class="col-md-6 mb-4">
+        <div class="card p-4 border-0">
+            <div class="card-body">
+                <h5 class="card-title text-primary">Total Companies</h5>
+                <h1 class="display-4 fw-bold text-danger">
+                    {{ companies_count }}
+                </h1>
+                <p class="text-muted">Registered companies</p>
+                <a href="/companies/" class="btn btn-outline-primary">
+                    View Companies
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Welcome Section -->
+<div class="card mt-4 p-4">
+    <h4 class="text-center text-primary">
+        Welcome to Campus Placement Management System
+    </h4>
+    <p class="text-center text-muted mt-2">
+        Manage students, companies, and placement activities efficiently.
+    </p>
+</div>
+{% endblock %}

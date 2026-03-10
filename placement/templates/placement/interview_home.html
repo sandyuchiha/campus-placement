@@ -1,0 +1,70 @@
+{% extends 'placement/base.html' %}
+
+{% block content %}
+<div style="
+    max-width: 800px;
+    margin: 50px auto;
+    background: #ffffff;
+    padding: 35px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    font-family: Arial, sans-serif;
+">
+
+    <h2 style="text-align:center; color:#333; margin-bottom:25px;">
+        B.Sc Interview Test – Instructions
+    </h2>
+
+    <div style="font-size:16px; color:#444; line-height:1.7;">
+        <p><strong>Important Instructions:</strong></p>
+
+        <ul>
+            <li>Each student can attend the interview <strong>only once</strong>.</li>
+            <li>Total number of questions: <strong>10</strong>.</li>
+            <li>Questions are selected <strong>randomly</strong> based on department.</li>
+            <li>Each question carries <strong>1 mark</strong>.</li>
+            <li>Minimum <strong>50%</strong> is required to pass.</li>
+            <li>Once submitted, answers <strong>cannot be changed</strong>.</li>
+        </ul>
+    </div>
+
+    <div style="
+        margin-top: 30px;
+        padding: 20px;
+        background: #f8f9fa;
+        border-left: 5px solid #0d6efd;
+        border-radius: 6px;
+        color: #333;
+    ">
+        <strong>How to Start the Interview?</strong>
+        <p style="margin-top:10px;">
+            Go to <strong>Students List</strong> and click
+            <span style="
+                background:#0d6efd;
+                color:white;
+                padding:3px 8px;
+                border-radius:4px;
+                font-size:14px;
+            ">
+                Start Interview
+            </span>
+            for the selected student.
+        </p>
+    </div>
+
+    <div style="text-align:center; margin-top:30px;">
+        <a href="{% url 'view_students' %}"
+           style="
+               text-decoration:none;
+               background:#198754;
+               color:white;
+               padding:12px 25px;
+               border-radius:6px;
+               font-weight:bold;
+           ">
+            Go to Students List
+        </a>
+    </div>
+
+</div>
+{% endblock %}

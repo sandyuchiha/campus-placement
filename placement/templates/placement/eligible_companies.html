@@ -1,0 +1,40 @@
+{% extends 'placement/base.html' %}
+{% block content %}
+
+<div class="container mt-4">
+    <h3>
+        Eligible Companies for {{ student.name }}
+        (CGPA: {{ student.cgpa }})
+    </h3>
+
+    {% if companies %}
+    <table class="table table-bordered table-hover mt-3">
+        <thead class="table-dark">
+            <tr>
+                <th>Company</th>
+                <th>Role</th>
+                <th>Location</th>
+                <th>Package</th>
+                <th>Min CGPA</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for company in companies %}
+            <tr>
+                <td>{{ company.name }}</td>
+                <td>{{ company.job_role }}</td>
+                <td>{{ company.location }}</td>
+                <td>{{ company.package }}</td>
+                <td>{{ company.min_cgpa }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p class="text-danger mt-3">
+            No companies available for your CGPA.
+        </p>
+    {% endif %}
+</div>
+
+{% endblock %}
